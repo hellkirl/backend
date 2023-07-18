@@ -3,6 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            padding: 40px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .container.signin {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container.signin p {
+            font-size: 14px;
+        }
+
+        .container.signin a {
+            color: #007bff;
+        }
+
+        .container.signin a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 <form action="/register" method="post">
@@ -14,7 +101,7 @@
         <label for="first_name"><b>First name</b></label>
         <input type="text" placeholder="First name" name="first_name" id="first_name" required>
 
-        <label for="last_name"><b>First name</b></label>
+        <label for="last_name"><b>Last name</b></label>
         <input type="text" placeholder="Last name" name="last_name" id="last_name" required>
 
         <label for="email"><b>Email</b></label>
@@ -34,7 +121,7 @@
     </div>
 
     <div class="container signin">
-        <p>Already have an account? <a href="#">Sign in</a>.</p>
+        <p>Already have an account? <a href="/login">Sign in</a>.</p>
     </div>
 </form>
 </body>

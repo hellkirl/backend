@@ -3,15 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Starting page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 50px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 100px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-<form action="/" method="post">
     <div class="container">
         <h1>Hello!</h1>
         <p>Do you already have an account?</p>
-        <button onclick="/login">I already have an account</button>
-        <button onclick="/register">I don't have an account</button>
+        <a href="/login"><button>I already have an account</button></a>
+        <a href="/register"><button>I don't have an account</button></a>
     </div>
-</form>
 </body>
 </html>

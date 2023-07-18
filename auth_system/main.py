@@ -1,23 +1,33 @@
-from flask import Flask, request, render_template
+from functools import wraps
+
 import bcrypt
+from flask import Flask, render_template, request, session, url_for
 from flask_migrate import Migrate
 
-from flask_login import (
-    UserMixin,
-    login_user,
-    LoginManager,
-    current_user,
-    logout_user,
-    login_required,
-)
-
+from config import DATABASE, PASSWORD, USERNAME
 from database.db import Connector
-from config import DATABASE, USERNAME, PASSWORD
 
 app = Flask(__name__)
 
 c = Connector(database=DATABASE, username=USERNAME, password=PASSWORD)
 con, cur = c.connect()
+
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'logged_in' not in session:
+            return app.redirect(url_for("login"))
+        return f(*args, **kwargs)
+
+    return decorated_function
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    session.pop("logged_in", None)
+    return app.redirect("/")
 
 
 @app.route("/")
@@ -33,15 +43,17 @@ def register():
         email = request.form["email"]
         phone_number = request.form["phone_number"]
         login = request.form["login"]
-        password = bcrypt.hashpw(request.form["password"].encode("utf-8"), bcrypt.gensalt())
+        salt = str(bcrypt.gensalt())
+        pw_hash = bcrypt.hashpw(request.form["password"].encode("utf-8"), bytes(salt))
 
-        cur.execute("SELECT * FROM users WHERE login = %s", (login,))
+        cur.execute("SELECT * FROM users WHERE email = %s", (email,))
         if cur.fetchone():
-            print("The registration is not possible. The user already exists!")
+            print("The registration is not possible. The email is already in use!")
         else:
             cur.execute("""INSERT INTO users (first_name, last_name, email, phone_number, login, password)
                         VALUES (%s, %s, %s, %s, %s, %s)""",
                         (first_name, last_name, email, phone_number, login, password))
+            return app.redirect("/dashboard")
 
     return render_template("register.html")
 
@@ -55,15 +67,18 @@ def login():
         cur.execute("SELECT password FROM users WHERE login = %s", (login,))
         acquired_password = cur.fetchone()
 
-        if password == acquired_password:
-            app.redirect("")
+        if bcrypt.checkpw(password, acquired_password):
+            return app.redirect("/dashboard")
+        else:
+            return app.redirect("/login")
 
     return render_template("login.html")
 
 
 @app.route("/dashboard")
+@login_required
 def dashboard():
-    return "<b>You're loggin in</b>"
+    return "<b>You're logged in</b>"
 
 
 if __name__ == "__main__":

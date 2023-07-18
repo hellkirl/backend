@@ -1,4 +1,3 @@
-import getpass
 from dataclasses import dataclass
 
 import psycopg2  # type: ignore
@@ -26,32 +25,3 @@ class Connector:
         except Exception as connection_error:
             print(f"The error is: {str(connection_error)}")
             return None
-
-
-if __name__ == "__main__":
-    database, username, password, port = (
-        input("Enter the name of the database: "),
-        input("Enter your username: "),
-        getpass.getpass(),
-        int(input("Enter port to the database: ")),
-    )
-    try:
-        c = Connector(database=database, username=username, password=password, port=port)
-        conn, curs = c.connect()  # type: ignore
-        curs.execute(
-            """CREATE TABLE users (
-            id SERIAL PRIMARY KEY,
-            first_name VARCHAR (255),
-            last_name VARCHAR (255),
-            email VARCHAR (322),
-            phone VARCHAR (15),
-            login VARCHAR (255),
-            password VARCHAR)"""
-        )
-        conn.close()
-        curs.close()
-        print("The table 'users' was successfully created")
-    except Exception as structure_error:
-        print(f"Your error is: {str(structure_error)}")
-    finally:
-        print("Connection to the database is closed")

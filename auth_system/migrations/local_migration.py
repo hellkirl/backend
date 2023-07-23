@@ -1,5 +1,6 @@
 from db import Connector
-from auth_system.config import DATABASE, USERNAME, PASSWORD, PORT
+
+from auth_system.config import DATABASE, PASSWORD, PORT, USERNAME
 
 if __name__ == "__main__":
     try:
@@ -23,4 +24,4 @@ if __name__ == "__main__":
     except Exception as structure_error:
         print(f"Your error is: {str(structure_error)}")
     finally:
-        print("Connection to the database is closed")
+        print("Connection to the migrations is closed")

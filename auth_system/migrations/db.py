@@ -14,7 +14,7 @@ class Connector:
 
     def connect(self) -> tuple[psycopg2.extensions.connection, psycopg2.extensions.cursor] | None:
         """
-        This method makes connection with database
+        This method makes connection with migrations
         :return: tuple with connector ad cursor
         """
         try:

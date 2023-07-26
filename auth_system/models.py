@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from pydantic.dataclasses import dataclass
 
 from config import DATABASE, PASSWORD, PORT, USERNAME
 from migrations.db import Connector
@@ -24,7 +24,7 @@ class User:
                 (self.first_name, self.last_name, self.email, self.phone_number, self.login, self.password),
             )
         except Exception as error:
-            print(f"It is not possible to create a user because of the following error {str(error)}")
+            print(f"It is not possible to create a new user because of the following error {str(error)}")
             con.rollback()
 
     def check(self):

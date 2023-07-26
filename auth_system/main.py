@@ -3,12 +3,12 @@ from functools import wraps
 from flask import Flask, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from config import DATABASE, PASSWORD, PORT, USERNAME
+from config import DATABASE, PASSWORD, PORT, USERNAME, SECRET_KEY
 from migrations.db import Connector
 from models import User
 
 app = Flask(__name__)
-app.secret_key = "hell"
+app.secret_key = SECRET_KEY
 
 c = Connector(DATABASE, USERNAME, PASSWORD, PORT)
 con, cur = c.connect()
@@ -91,4 +91,4 @@ def login_post():
             session["logged_in"] = True
             return redirect(url_for("dashboard"))
         else:
-            return redirect(url_for("login"))
+            return render_template("login_incorrect.html")

@@ -1,7 +1,6 @@
-from pydantic.dataclasses import dataclass
-
 from config import DATABASE, PASSWORD, PORT, USERNAME
 from migrations.db import Connector
+from pydantic.dataclasses import dataclass
 
 c = Connector(database=DATABASE, username=USERNAME, password=PASSWORD, port=PORT)
 con, cur = c.connect()

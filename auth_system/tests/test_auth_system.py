@@ -1,8 +1,8 @@
 import unittest
 from unittest import mock
 
+from auth_system.config import DATABASE, PASSWORD, PORT, USERNAME
 from auth_system.migrations.db import Connector
-from auth_system.config import DATABASE, USERNAME, PASSWORD, PORT
 
 
 class AuthSystemTest(unittest.TestCase):

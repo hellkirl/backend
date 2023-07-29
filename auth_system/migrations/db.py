@@ -12,13 +12,20 @@ class Connector:
     password: str
     port: int = 5432
 
-    def connect(self) -> tuple[psycopg2.extensions.connection, psycopg2.extensions.cursor] | None:
+    def connect(
+        self,
+    ) -> tuple[psycopg2.extensions.connection, psycopg2.extensions.cursor] | None:
         """
         This method makes connection with migrations
         :return: tuple with connector ad cursor
         """
         try:
-            con = psycopg2.connect(database=self.database, user=self.username, password=self.password, port=self.port)
+            con = psycopg2.connect(
+                database=self.database,
+                user=self.username,
+                password=self.password,
+                port=self.port,
+            )
             cur = con.cursor()
             con.set_session(autocommit=True)
             return con, cur

@@ -22,21 +22,18 @@ jobs:
           then
             pip install -r "${{ github.workspace }}/${{ github.ref }}/requirements.txt"
           fi
-      - name: Change directory to the branch's folder
-        run: |
-          cd "${{ github.workspace }}/${{ github.ref }}"
       - name: Run isort
         run: |
-          isort -c --diff --profile black .
+          isort -c --diff --profile black ${{ github.ref }}
       - name: Run black
         run: |
-          black -l 120 --check --diff --color --exclude "test*" .
+          black -l 120 --check --diff --color --exclude "test*" ${{ github.ref }}
       - name: Run mypy
         run: |
-          mypy --ignore-missing-imports .
+          mypy --ignore-missing-imports ${{ github.ref }}
       - name: Run pylint
         run: |
-          pylint --disable=missing-docstring --variable-rgx="[a-z0-9_]{1,30}$" --argument-rgx="^[a-z][a-z0-9]*((_[a-z0-9]+)*)?$" --ignore-patterns="test_.*?py" --exit-zero .
+          pylint --disable=missing-docstring --variable-rgx="[a-z0-9_]{1,30}$" --argument-rgx="^[a-z][a-z0-9]*((_[a-z0-9]+)*)?$" --ignore-patterns="test_.*?py" --exit-zero ${{ github.ref }}
       - name: Run unittests
         run: |
-          python -m unittest discover .
+          python -m unittest discover ${{ github.ref }}

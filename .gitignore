@@ -190,3 +190,4 @@ cython_debug/
 
 auth_system/config.py
 
+/bin

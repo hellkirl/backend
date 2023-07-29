@@ -26,18 +26,27 @@ def login_required(f):
 
 @app.route("/")
 def index():
-    return render_template("start.html")
+    if "logged_in" in session and session["logged_in"]:
+        return redirect(url_for("dashboard"))
+    else:
+        return render_template("start.html")
 
 
-@login_required
 @app.route("/dashboard")
+@login_required
 def dashboard():
-    return "Dashboard"
+    if "logged_in" in session and session["logged_in"]:
+        return render_template("dashboard.html")
+    else:
+        return redirect(url_for("login"))
 
 
 @app.route("/signup")
 def signup():
-    return render_template("register.html")
+    if "logged_in" in session and session["logged_in"]:
+        return render_template("dashboard.html")
+    else:
+        return render_template("register.html")
 
 
 @app.route("/logout")
@@ -68,6 +77,7 @@ def signup_post():
 
         if user.check():
             user.create()
+            session["logged_in"] = True
             return redirect(url_for("dashboard"))
         else:
             return redirect(url_for("login"))
@@ -75,7 +85,10 @@ def signup_post():
 
 @app.route("/login")
 def login():
-    return render_template("login.html")
+    if "logged_in" in session and session["logged_in"]:
+        return redirect(url_for("dashboard"))
+    else:
+        return render_template("login.html")
 
 
 @app.route("/login", methods=["POST"])
@@ -92,3 +105,7 @@ def login_post():
             return redirect(url_for("dashboard"))
         else:
             return render_template("login_incorrect.html")
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

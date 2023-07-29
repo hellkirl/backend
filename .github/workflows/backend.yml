@@ -18,13 +18,13 @@ jobs:
           pip install black mypy pylint requests responses httpretty community networkx matplotlib pandas
       - name: Install project dependencies
         run: |
-          if [ -f "${{ github.ref }}/requirements.txt" ];
+          if [ -f "${{ github.workspace }}/${{ github.ref }}/requirements.txt" ];
           then
-            pip install -r "${{ github.ref }}/requirements.txt"
+            pip install -r "${{ github.workspace }}/${{ github.ref }}/requirements.txt"
           fi
       - name: Change directory to the branch's folder
         run: |
-          cd "${{ github.ref }}"
+          cd "${{ github.workspace }}/${{ github.ref }}"
       - name: Run isort
         run: |
           isort -c --diff --profile black .

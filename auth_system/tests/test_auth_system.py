@@ -2,7 +2,7 @@ import unittest
 from unittest import mock
 
 from config import DATABASE, PASSWORD, PORT, USERNAME
-from migrations.db import Connector
+from migrations.db import Connector  # type: ignore
 
 
 class AuthSystemTest(unittest.TestCase):

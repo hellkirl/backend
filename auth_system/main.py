@@ -104,7 +104,3 @@ def login_post():
             return redirect(url_for("dashboard"))
         else:
             return render_template("login_incorrect.html")
-
-
-if __name__ == "__main__":
-    app.run(debug=True)

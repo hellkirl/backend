@@ -2,7 +2,6 @@ from functools import wraps
 
 from config import DATABASE, PASSWORD, PORT, SECRET_KEY, USERNAME
 from flask import Flask, redirect, render_template, request, session, url_for
-
 from migrations.db import Connector
 from models import User
 from werkzeug.security import check_password_hash, generate_password_hash

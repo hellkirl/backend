@@ -30,9 +30,7 @@ class User:
                 ),
             )
         except Exception as error:
-            print(
-                f"It is not possible to create a new user because of the following error {str(error)}"
-            )
+            print(f"It is not possible to create a new user because of the following error {str(error)}")
             con.rollback()
 
     def check(self):

@@ -29,9 +29,7 @@ class AuthSystemTest(unittest.TestCase):
             c = Connector(DATABASE, USERNAME, PASSWORD, PORT)
             c.connect()
 
-            mock_con.assert_called_once_with(
-                database=DATABASE, user=USERNAME, password=PASSWORD, port=PORT
-            )
+            mock_con.assert_called_once_with(database=DATABASE, user=USERNAME, password=PASSWORD, port=PORT)
 
 
 if __name__ == "__main__":

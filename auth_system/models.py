@@ -35,7 +35,4 @@ class User:
 
     def check(self):
         cur.execute("SELECT * FROM users WHERE email = %s", (self.email,))
-        if cur.fetchone() is None:
-            return True
-        else:
-            return False
+        return True if cur.fetchone() is None else False

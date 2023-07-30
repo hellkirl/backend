@@ -1,6 +1,5 @@
-from db import Connector
-
 from config import DATABASE, PASSWORD, PORT, USERNAME  # type: ignore
+from db import Connector
 
 
 def local_schema(database: str, username: str, pwd: str, port: int = 5432) -> None:

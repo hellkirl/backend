@@ -58,7 +58,6 @@ def logout():
 @app.route("/signup", methods=["POST"])
 def signup_post():
     if request.method == "POST":
-        login = request.form["login"]
         password = request.form["password"]
         email = request.form["email"]
         first_name = request.form["first_name"]
@@ -66,7 +65,6 @@ def signup_post():
         phone_number = request.form["phone_number"]
 
         user = User(
-            login=login,
             password=generate_password_hash(password),
             email=email,
             first_name=first_name,
@@ -93,10 +91,10 @@ def login():
 @app.route("/login", methods=["POST"])
 def login_post():
     if request.method == "POST":
-        login = request.form["login"]
+        email = request.form["email"]
         password = request.form["password"]
 
-        cur.execute("SELECT password FROM users WHERE login = %s", (login,))
+        cur.execute("SELECT password FROM users WHERE email = %s", (email,))
         hashed_password = cur.fetchone()
 
         if hashed_password and check_password_hash(hashed_password[0], password):
@@ -104,7 +102,3 @@ def login_post():
             return redirect(url_for("dashboard"))
         else:
             return render_template("login_incorrect.html")
-
-
-if __name__ == "__main__":
-    app.run(debug=True)

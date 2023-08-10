@@ -10,7 +10,6 @@ con, cur = c.connect()
 class User:
     first_name: str
     last_name: str
-    login: str
     password: str
     email: str
     phone_number: str
@@ -18,14 +17,13 @@ class User:
     def create(self):
         try:
             cur.execute(
-                """INSERT INTO users (first_name, last_name, email, phone_number, login, password)
-                                        VALUES (%s, %s, %s, %s, %s, %s)""",
+                """INSERT INTO users (first_name, last_name, email, phone_number, password)
+                                        VALUES (%s, %s, %s, %s, %s)""",
                 (
                     self.first_name,
                     self.last_name,
                     self.email,
                     self.phone_number,
-                    self.login,
                     self.password,
                 ),
             )

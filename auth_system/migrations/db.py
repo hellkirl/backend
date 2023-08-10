@@ -30,5 +30,4 @@ class Connector:
             con.set_session(autocommit=True)
             return con, cur
         except Exception as connection_error:
-            print(f"The error is: {str(connection_error)}")
-            return None
+            return f"The error is: {str(connection_error)}"

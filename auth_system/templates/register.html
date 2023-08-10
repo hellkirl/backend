@@ -107,10 +107,8 @@
         <input type="email" placeholder="Enter Email" name="email" id="email" required>
 
         <label for="phone_number"><b>Phone number</b></label>
-        <input type="text" placeholder="Enter phone number" name="phone_number" id="phone_number" required>
-
-        <label for="login"><b>Login</b></label>
-        <input type="text" placeholder="Enter login" name="login" id="login" required>
+        <input type="text" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"
+               placeholder="Enter phone number" name="phone_number" id="phone_number" required>
 
         <label for="password"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" id="password" required>

@@ -1,4 +1,4 @@
-from config import DATABASE, PASSWORD, PORT, USERNAME  # type: ignore
+from auth_system.config import DATABASE, PASSWORD, PORT, USERNAME  # type: ignore
 from db import Connector
 
 
@@ -21,14 +21,19 @@ def local_schema(database: str, username: str, pwd: str, port: int = 5432) -> No
             last_name VARCHAR (255),
             email VARCHAR (322),
             phone VARCHAR (15),
-            login VARCHAR (255),
             password VARCHAR)"""
         )
         con.close()
         cur.close()
         print("The table 'users' was successfully created")
+    except TypeError as NoneTypeError:
+        print(f"Your error is: {NoneTypeError}. Make sure your database is active.")
+        with open("report.txt", "w") as error_file:
+            error_file.write(str(NoneTypeError))
     except Exception as migrations_error:
-        print(f"Your error is: {str(migrations_error)}")
+        print(f"Your error is: {migrations_error}.")
+        with open("report.txt", "w") as error_file:
+            error_file.write(str(migrations_error))
     finally:
         print("Connection to the database is closed")
 

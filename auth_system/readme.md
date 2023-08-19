@@ -1,8 +1,8 @@
 # Auth system
 
 ### TODO: 
-1) Password recovery
-2) Change login to email 
+1) Password recovery <br>
+2) ~~Change login to email~~ 
 3) Auth via services
 
 ### Technologies used
@@ -24,16 +24,16 @@
 ### Photo examples
 
 #### Start page
-<img src=".static/start.png">
+<img src="">
 
 #### Login
-<img src=".static/login.png">
+<img src="">
 
 #### Incorrect login 
-<img src=".static/incorrect_login.png">
+<img src="">
 
 #### Sign up
-<img src=".static/register.png">
+<img src="">
 
 #### Dashboard
-<img src=".static/dashboard.png">
+<img src="">

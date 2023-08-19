@@ -32,7 +32,7 @@ def local_schema(database: str, username: str, pwd: str, port: int = 5432) -> No
             error_file.write(str(NoneTypeError))
     except Exception as migrations_error:
         print(f"Your error is: {migrations_error}.")
-        with open("report.txt", "w") as error_file:
+        with open("error.txt", "w") as error_file:
             error_file.write(str(migrations_error))
     finally:
         print("Connection to the database is closed")

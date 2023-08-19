@@ -5,7 +5,7 @@ import psycopg2  # type: ignore
 
 @dataclass
 class Connector:
-    """This class is used to create a connector to PostgreSQL"""
+    """This class is used to create a connector to PostgresSQL"""
 
     database: str
     username: str

@@ -1,10 +1,11 @@
 from functools import wraps
 
-from config import DATABASE, PASSWORD, PORT, SECRET_KEY, USERNAME
 from flask import Flask, redirect, render_template, request, session, url_for
+from werkzeug.security import check_password_hash, generate_password_hash
+
+from config import DATABASE, PASSWORD, PORT, SECRET_KEY, USERNAME
 from migrations.db import Connector  # type: ignore
 from models import User
-from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 app.secret_key = SECRET_KEY

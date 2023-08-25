@@ -1,5 +1,6 @@
-from auth_system.config import DATABASE, PASSWORD, PORT, USERNAME  # type: ignore
 from db import Connector
+
+from auth_system.config import DATABASE, PASSWORD, PORT, USERNAME  # type: ignore
 
 
 def local_schema(database: str, username: str, pwd: str, port: int = 5432) -> None:
